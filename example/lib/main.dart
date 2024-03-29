@@ -6,13 +6,17 @@ class TestWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text('Hello World!');
+    return ListView(
+        children: List.generate(10, (index) => Text('Item $index')));
   }
 }
 
 void main() {
   runPreviews(
-    root: (preview) => MaterialApp(home: Scaffold(body: preview)),
+    root: (preview) => MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(body: preview),
+    ),
     previews: [
       Preview(size: Size(200, 200), child: TestWidget()),
       Preview(size: Size(200, 200), child: TestWidget()),

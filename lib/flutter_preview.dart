@@ -18,6 +18,7 @@ void runPreviews({
 }) {
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -32,7 +33,7 @@ void runPreviews({
                     ),
                     width: preview.size.width,
                     height: preview.size.height,
-                    child: preview.child,
+                    child: root(preview.child),
                   ),
                 )
                 .toList(),
