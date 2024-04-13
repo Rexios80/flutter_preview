@@ -6,8 +6,17 @@ class TestWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-        children: List.generate(10, (index) => Text('Item $index')));
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final skinny = constraints.maxWidth < 200;
+        return ListView(
+          children: List.generate(
+            100,
+            (index) => Text('${skinny ? 'skinny' : 'wide'} $index'),
+          ),
+        );
+      },
+    );
   }
 }
 
@@ -18,8 +27,8 @@ void main() {
       home: Scaffold(body: preview),
     ),
     previews: [
-      Preview(size: Size(200, 200), child: TestWidget()),
-      Preview(size: Size(200, 200), child: TestWidget()),
+      const Preview(name: 'Wide', size: Size(200, 200), child: TestWidget()),
+      const Preview(name: 'Skinny', size: Size(150, 200), child: TestWidget()),
     ],
   );
 }
